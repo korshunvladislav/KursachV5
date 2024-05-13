@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рисование графика функции</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Рисование графика функции</h1>
+        </header>
+        <main>
+            <div id="function-graph" class="graph-container"></div>
+            <div class="buttons-container">
+                <button class="button" onclick="getPoints()">Получить точки</button>
+                <button class="button" onclick="clearGraph()">Очистить график</button>
+            </div>
+            <div id="output-container" class="output"></div>
+        </main>
+        <footer>
+            <p>Developed by С.К.А.М.</p>
+        </footer>
+    </div>
+    <script th:src="@{/js/script.js}"></script>
+</body>
+</html>
