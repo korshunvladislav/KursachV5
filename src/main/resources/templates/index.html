@@ -15,7 +15,12 @@
         <main>
             <div id="function-graph" class="graph-container"></div>
             <div class="buttons-container">
-                <button class="button" onclick="getPoints()">Получить точки</button>
+                <select id="function-selector">
+                    <option value="1">Линейная функция</option>
+                    <option value="2">Квадратичная функция</option>
+                    <option value="3">Кубическая функция</option>
+                </select>
+                <button class="button" onclick="getPoints()">Получить функцию</button>
                 <button class="button" onclick="clearGraph()">Очистить график</button>
             </div>
             <div id="output-container" class="output"></div>
