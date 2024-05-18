@@ -199,3 +199,6 @@ README.html
 *.iml
 .idea
 .exercism
+
+input.txt
+output.txt

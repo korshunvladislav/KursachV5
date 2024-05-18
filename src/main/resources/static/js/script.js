@@ -6,12 +6,19 @@ const getPoints = async () => {
     try {
         const selectedFunction = functionSelector.value;
         const shapes = graphDiv.layout.shapes;
+
+        const dataToSend = {
+            selectedFunction: selectedFunction,
+            shapes: shapes
+        }
+        console.log(dataToSend);
+
         const response = await fetch('http://127.0.0.1:8080/send_points', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ shapes })
+            body: JSON.stringify({ data: dataToSend })
         });
         pointsOutput.innerHTML = await response.text();
     } catch (error) {
