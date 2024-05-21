@@ -10,7 +10,6 @@ import org.json.JSONObject;
 public class CoordinateProcessorService {
     public float[] processPoints(String json) {
         try {
-            System.out.println(json);
             JSONObject jsonObject = new JSONObject(json);
             JSONObject dataObject = jsonObject.getJSONObject("data");
             JSONArray shapesArray = dataObject.getJSONArray("shapes");
@@ -40,7 +39,7 @@ public class CoordinateProcessorService {
             try {
                 writer.writePointsToFile(inputArray, selectedFunction, inputFilename);
 
-                Process process = Runtime.getRuntime().exec("./a.out ");
+                Process process = Runtime.getRuntime().exec("./a.out");
                 process.waitFor();
 
                 return writer.readResultFromFile(outputFilename);
