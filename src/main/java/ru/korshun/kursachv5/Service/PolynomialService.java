@@ -27,9 +27,9 @@ public class PolynomialService {
 
             String formattedCoeff;
             if (coeff == (int) coeff) {
-                formattedCoeff = String.format(Locale.forLanguageTag("ru"), "%d", (int) coeff);
+                formattedCoeff = String.format(Locale.forLanguageTag("en"), "%d", (int) coeff);
             } else {
-                formattedCoeff = String.format(Locale.forLanguageTag("ru"), "%.2f", coeff)
+                formattedCoeff = String.format(Locale.forLanguageTag("en"), "%.2f", coeff)
                         .replaceAll("\\.?0+$", "");
             }
 

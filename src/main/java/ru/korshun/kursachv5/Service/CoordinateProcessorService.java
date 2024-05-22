@@ -1,5 +1,6 @@
 package ru.korshun.kursachv5.Service;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -42,7 +43,12 @@ public class CoordinateProcessorService {
                 Process process = Runtime.getRuntime().exec("./a.out");
                 process.waitFor();
 
-                return writer.readResultFromFile(outputFilename);
+                float[] result = writer.readResultFromFile(outputFilename);
+
+                new File(inputFilename).delete();
+                new File(outputFilename).delete();
+
+                return result;
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
                 return new float[0];

@@ -37,7 +37,7 @@ const getPoints = async () => {
             shapes: shapes
         }
 
-        const response = await fetch('http://127.0.0.1:8080/send_points', {
+        const response = await fetch('/send_points', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -57,10 +57,10 @@ const getPoints = async () => {
 
         const compiledFunction = math.compile(expression);
 
-        const xValues = math.range(-10, 10, 0.1).toArray();
+        const xValues = math.range(-30, 30, 0.1).toArray();
         const yValues = xValues.map(x => compiledFunction.evaluate({ x }));
 
-        Plotly.addTraces(graphDiv, {
+        Plotly.addTraces('function-graph', {
             x: xValues,
             y: yValues,
             mode: 'lines',
