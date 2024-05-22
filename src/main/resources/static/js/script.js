@@ -1,6 +1,7 @@
 const pointsOutput = document.getElementById('output-container');
 const graphDiv = document.getElementById('function-graph');
 const functionSelector = document.getElementById('function-selector');
+let approximationDone = false;
 
 const initializeGraph = () => {
     Plotly.newPlot('function-graph', [{
@@ -28,6 +29,9 @@ const initializeGraph = () => {
 };
 
 const getPoints = async () => {
+    if (approximationDone) return;
+    approximationDone = true;
+
     try {
         const selectedFunction = functionSelector.value;
         const shapes = graphDiv.layout.shapes;
@@ -47,6 +51,12 @@ const getPoints = async () => {
 
         const functionLaTeX = await response.text();
         pointsOutput.innerHTML = functionLaTeX;
+
+        if (functionLaTeX.trim() === "") {
+            pointsOutput.classList.add('hidden');
+        } else {
+            pointsOutput.classList.remove('hidden');
+        }
 
         const expression = functionLaTeX
             .replace(/\\left/g, '')
@@ -78,6 +88,8 @@ const getPoints = async () => {
 const clearGraph = () => {
     Plotly.purge(graphDiv);
     pointsOutput.innerHTML = '';
+    pointsOutput.classList.add('hidden');
+    approximationDone = false;
     initializeGraph();
 };
 
