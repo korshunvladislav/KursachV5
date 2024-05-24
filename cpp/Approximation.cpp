@@ -433,6 +433,35 @@ float* writeOutArr(float a, float b, float c, float d)
     return arr;
 }
 
+void strongNormalization(float* x, float* y, int* n, int FLAP){
+    if (FLAP == 2)    {
+        float A[3], B[3];
+        A[0] = x[0];        B[0] = y[0];
+        A[2] = x[(*n) - 1];        B[2] = y[(*n) - 1];
+        float buf = y[0];
+        int ibuf = 0;        for (int i = 0; i < *n; i++)
+        {            if (buf > y[i])
+            {                buf = y[i];
+                ibuf = i;            }
+        }        A[1] = x[ibuf];
+        B[1] = y[ibuf];
+        x[0] = A[0];        y[0] = B[0];
+        x[1] = A[1];        y[1] = B[1];
+        x[2] = A[2];        y[2] = B[2];
+        *(n) = 3;    }
+    else if (FLAP == 3)    {
+        float A[4], B[4];
+        A[0] = x[0];        B[0] = y[0];
+        A[3] = x[(*n) - 1];        B[3] = y[(*n) - 1];
+        A[1] = x[(*n) / 3];
+        B[1] = y[(*n) / 3];        A[2] = x[(*n) * 2 / 3];
+        B[2] = y[(*n) * 2 / 3];
+        x[0] = A[0];        y[0] = B[0];
+        x[1] = A[1];        y[1] = B[1];
+        x[2] = A[2];        y[2] = B[2];
+        x[3] = A[3];        y[3] = B[3];
+        *(n) = 4;    }
+}
 
 int main()
 {
@@ -449,6 +478,8 @@ int main()
     fscanf(fl, "%d", &FLAP);
 
     Inp_X_and_Y_arr(X, Y, &n, fl);
+
+    strongNormalization(X, Y, &n, FLAP);
 
     FILE* fl2 = fopen("output.txt", "w");
 

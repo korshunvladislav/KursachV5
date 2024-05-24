@@ -50,12 +50,13 @@ const getPoints = async () => {
         });
 
         const functionLaTeX = await response.text();
-        pointsOutput.innerHTML = functionLaTeX;
 
         if (functionLaTeX.trim() === "") {
             pointsOutput.classList.add('hidden');
         } else {
+            pointsOutput.innerHTML = `$$${functionLaTeX}$$`;
             pointsOutput.classList.remove('hidden');
+            MathJax.typeset();
         }
 
         const expression = functionLaTeX

@@ -18,11 +18,16 @@ public class PolynomialService {
                 continue;
             }
 
-            if (!first && coeff > 0.0f) {
-                sb.append(" + ");
+            if (!first) {
+                if (coeff > 0.0f) {
+                    sb.append(" + ");
+                } else {
+                    sb.append(" - ");
+                    coeff = -coeff;
+                }
             } else if (coeff < 0.0f) {
-                sb.append(" - ");
-                coeff = -coeff;
+                    sb.append("-");
+                    coeff = -coeff;
             }
 
             String formattedCoeff;
@@ -45,6 +50,10 @@ public class PolynomialService {
             }
 
             first = false;
+        }
+
+        if (first) {
+            sb.append(0);
         }
 
         return sb.toString();
